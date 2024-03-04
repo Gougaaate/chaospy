@@ -18,6 +18,9 @@ def Lyapunov_logistic(file):
         lambd += (1/i) * log(abs(mu - 2 * mu * x[i]))
         LE.append(lambd)
     plt.plot(LE)
+    plt.title("Lyapunov exponent : \u03BC = " + str(mu))
+    plt.ylabel("value of \u03bb")
+    plt.xlabel("value of n")
     plt.show()
 
 if __name__ == "__main__":

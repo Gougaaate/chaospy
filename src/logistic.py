@@ -6,25 +6,26 @@ from matplotlib.animation import FuncAnimation
 def logistic_map(t0, tf, points_number):
     """Computes the logistic map for a given range of time and a given number of points.
     """
-    P = np.linspace(0, 4, points_number)
-    m = t0
+    P = np.linspace(t0, tf, points_number)
     X, Y = [], []
 
     for u in P:
         X.append(u)
         m = np.random.random()
-        for n in range(tf):
+        for n in range(400):
             m = (u * m) * (1 - m)
 
         Y.append(m)
     plt.plot(X, Y, ls='', marker=',')
+    plt.xlabel("Value of \u03BC")
+    plt.title("Logistic map")
     plt.show()
 
 def logistic(t0, tf, m):
     """Computes values of the logistic function given the m parameter.
     Writes them in a file.
     """
-    t = np.linspace(t0, tf, 1000)
+    t = np.linspace(t0, tf, 10000)
     x = 0.75
     X = [x]
     for i in range(len(t)):
@@ -39,8 +40,7 @@ def logistic(t0, tf, m):
 
 if __name__ == "__main__":
   
-    mu = 3.51
-    # vanDerPol(initial_state,mu)
+    mu = 3.8
     logistic(0, 500, mu)
     print("end of the program") 
     
