@@ -69,8 +69,8 @@ def plot_distance(X, Y, Z, X1, Y1, Z1,t):
 if __name__ == "__main__":
 
     # Define the parameters
-    alpha = 40
-    beta = 91
+    alpha = 10
+    beta = 12
     m0 = -8/7
     m1 = -5/7
 
@@ -111,7 +111,7 @@ if __name__ == "__main__":
         return point, trace
 
     # Create animation
-    ani = FuncAnimation(fig, update, frames=len(t), interval=1, blit=True)
+    ani = FuncAnimation(fig, update, frames=len(t), interval=10, blit=True)
 
     plt.show()
     plot_distance(X, Y, Z, X1, Y1, Z1, t[:-1])

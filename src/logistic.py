@@ -37,10 +37,20 @@ def logistic(t0, tf, m):
             f.write(str(X[i]) + "\n")
     return X
 
+def plot_logistic(X, mu):
+    """Plots the logistic function given the values of X.
+    """
+    plt.plot(X[:150])
+    plt.title(f"Logistic function, \u03BC = {mu}")
+    plt.ylabel("Value of x_n")
+    plt.xlabel("Value of n")
+    plt.show()
 
 if __name__ == "__main__":
   
-    mu = 3.8
-    logistic(0, 500, mu)
+    mu = 3.82
+    # X = logistic(0, 500, mu)
+    # plot_logistic(X, mu)
+    logistic_map(2, 4, 100000)
     print("end of the program") 
     

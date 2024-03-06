@@ -5,8 +5,8 @@ from scipy.integrate import odeint
 
 # Constants
 G = 9.81  # Acceleration due to gravity (m/s^2)
-L1 = 1.0  # Length of pendulum 1 (m)
-L2 = 0.75  # Length of pendulum 2 (m)
+L1 = 1  # Length of pendulum 1 (m)
+L2 = .5  # Length of pendulum 2 (m)
 M1 = 1.0  # Mass of pendulum 1 (kg)
 M2 = 1.0  # Mass of pendulum 2 (kg)
 
@@ -47,10 +47,19 @@ def animate_double_pendulum(i, frames1, frames2):
     
     return line1, line2, trace1, trace2
 
+def plot_theta2_at_end(frames1, t):
+    plt.figure()
+    plt.plot(t[:1000], (frames1[:,2][:1000])%(2*np.pi) * 180/np.pi)
+    plt.xlabel('time (s)')
+    plt.ylabel('\u03B8 2 (degrees)')
+    plt.title('Pendulum angle over time')
+    plt.legend()
+    plt.show()
+
 if __name__ == "__main__":
     # Initial conditions
-    initial_state1 = [ np.pi + 0.001, 0, np.pi/2, 0]  # [theta1, omega1, theta2, omega2]
-    initial_state2 = [ np.pi, 0, np.pi/2, 0]  # [theta1, omega1, theta2, omega2]
+    initial_state1 = [ np.pi/2 + 0.001, 0, np.pi, 0]  # [theta1, omega1, theta2, omega2]
+    initial_state2 = [ np.pi/2, 0, np.pi, 0]  # [theta1, omega1, theta2, omega2]
 
     # Time points
     t = np.linspace(0, 100, 5000)
@@ -58,6 +67,7 @@ if __name__ == "__main__":
     # Solve the differential equations for each pendulum
     frames1 = odeint(double_pendulum_equations, initial_state1, t)
     frames2 = odeint(double_pendulum_equations, initial_state2, t)
+    print(frames1)
 
     # Set up the figure and axes
     fig, ax = plt.subplots()
@@ -75,4 +85,4 @@ if __name__ == "__main__":
 
     # Show the animation
     plt.show()
-
+    plot_theta2_at_end(frames1, t)
